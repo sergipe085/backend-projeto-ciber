@@ -50,6 +50,7 @@ export class PrismaUserRepository extends UserRepository {
                 email: user.email,
                 name: user.name,
                 password: user.password_hash,
+
             }
         })
 

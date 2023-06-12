@@ -1,5 +1,5 @@
 import { User } from "../../entities/user";
-import { UserRepository } from "@repositories/user-repository";
+import { UserRepository } from "../../repositories/user-repository";
 import { hashSync } from "bcrypt";
 import { FieldValidation } from "../../../utils/validation/field-validation";
 import { AppError } from "../../../infra/http/errors/app-error";
@@ -45,13 +45,13 @@ export class RegisterUseCase {
         var newUser = new User({
             name,
             email,
-            password: passwordHash
+            password: passwordHash,
         });
     
         newUser = await this.userRepository.save(newUser);
 
         return {
-            user: UserAppToInfra(newUser)
+            user: newUser
         }
     }
 }

@@ -2,10 +2,11 @@ import { Router } from "express"
 import { LoginUseCase } from "../../../app/use-cases/auth/login-usecase";
 import { RegisterUseCase } from "../../../app/use-cases/auth/register-usecase";
 import { PrismaUserRepository } from "../../database/prisma/repositories/prisma-user-repository";
+import { InMemoryUserRepository } from "../../../app/repositories/in-memory-user-repository";
+import { userRepository } from ".";
 
 const auth_routes = Router();
 
-const userRepository = new PrismaUserRepository();
 
 auth_routes.post("/login", async (req, res) => {
     const { email, password } = req.body;
@@ -27,7 +28,7 @@ auth_routes.post("/register", async (req, res) => {
     const response = await registerUseCase.execute({
         name,
         email,
-        password
+        password,
     });
 
     return res.json(response);

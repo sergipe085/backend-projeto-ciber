@@ -5,7 +5,7 @@ export function PrismaToDomain(userPrisma: UserPrisma): UserDomain {
     const user = new UserDomain({ 
         name: userPrisma.name,
         email: userPrisma.email,
-        password: userPrisma.password
+        password: userPrisma.password,
     });
 
     return user;
